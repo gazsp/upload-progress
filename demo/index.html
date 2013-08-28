@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Upload progress demo</title>
+
+	<script src="jquery"></script>
+	<script type="text/javascript" src="../js/uploadProgress.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<form action="" method="post">
+		<input type="file">
+	</form>
+</div>
+
+<script>
+	$(document.ready(function() {
+		var options = {
+			url: self.formSubmitURL,
+			uploadStarted: function(index, file) {
+				window.console.log("Upload " + index + " started");
+			},
+			uploadProgress: function(index, file, value) {
+				window.console.log("Upload " + index + " progress = " + value + "%");
+			},
+			uploadComplete: function(index, file) {
+				window.console.log("Upload " + index + " completed");
+			},
+			uploadsCompleted: function() {
+				window.console.log("All uploads completed");
+			},
+			requestComplete: function(response) {
+				window.console.log("Uploads finished, returned " + resposonse);
+			}
+		}
+
+		$('input[type=file]').uploadProgress(options);
+	})
+</script>
+
+</body>
+</html>
