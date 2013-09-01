@@ -1,24 +1,27 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Upload progress demo</title>
 
-	<script src="jquery"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script type="text/javascript" src="../js/uploadProgress.js"></script>
 </head>
+
 <body>
 
 <div class="container">
-	<form action="" method="post">
-		<input type="file">
+	<p>Please upload some files using the form below</p>
+	<form action="upload.php" method="post">
+		<input type="file" name="files[]" multiple/>
 	</form>
 </div>
 
-<script>
-	$(document.ready(function() {
+<script type="text/javascript">
+	$(document).ready(function() {
 		var options = {
-			url: self.formSubmitURL,
+			url: "upload.php",
 			uploadStarted: function(index, file) {
 				window.console.log("Upload " + index + " started");
 			},
@@ -32,12 +35,11 @@
 				window.console.log("All uploads completed");
 			},
 			requestComplete: function(response) {
-				window.console.log("Uploads finished, returned " + resposonse);
+				window.console.log("Uploads finished, returned " + response);
 			}
 		}
-
 		$('input[type=file]').uploadProgress(options);
-	})
+	});
 </script>
 
 </body>
